@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         @import url("https://fonts.googleapis.com/css?family=Signika+Negative:300,400&display=swap");
+
+
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {font-family: "Signika Negative", sans-serif;
+            background-color: #000;
+        }
+
+        .center {
+            position: absolute;
+            text-align: center;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .center h1 {
+            color: rgba(255, 255, 255, 0);
+            font-size: 100px;
+            text-transform: uppercase;
+            font-weight: 700;
+            background-size: cover;
+            background-image: url(../imeages/star3.png);
+            -webkit-background-clip: text;
+            animation: background-text-animation 50s linear infinite;
+            cursor: pointer;
+            text-shadow:1px 1px 1px rgba(255, 255, 255, 0.116);
+        
+        }
+
+        @keyframes background-text-animation {
+            0% {
+                background-position: left 0px top 50%;
+            }
+
+            50% {
+                background-position: left 1500px top 50%;
+            }
+
+            100% {
+                background-position: left 0px top 50%;
+            }
+        }
+       a{
+        text-decoration: none;
+       }
+       @media screen and (max-width:768px) {
+        .center h1{
+            font-size: 8vh;
+        }
+        
+       }
+    </style>
+</head>
+
+<body>
+    <div class="center">
+        <a href="main.html"><h1>KBH's Portfolio</h1></a>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <meta name="naver" content="notranslate">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" />
+    <style>
+        
+        @import url("https://fonts.googleapis.com/css?family=Signika+Negative:300,400&display=swap");
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Signika Negative", sans-serif;
+            letter-spacing: 0.04em;
+        }
+
+        .section {
+            height: 100vh;
+            width: 100%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .bg1 {
+            background-color: #ccc;
+        }
+
+        .bg2 {
+            background-color: #333;
+        }
+
+        h1 {
+            font-size: 40px;
+            line-height: 1.2;
+            margin: 0;
+        }
+
+        .spacer {
+            height: 50vh;
+            background-color: #000;
+        }
+
+        .navigater {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            background-color: gray;
+            position: fixed;
+            z-index: 1;
+
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
+
+        a:hover {
+            color: orange;
+        }
+
+        ul {
+            display: flex;
+            
+        }
+
+        li {
+            list-style: none;
+            margin: 20px 50px;
+            
+            padding-top: 10px;
+        }
+          .logo{
+            margin:10px 50px;
+            cursor: pointer;
+          }
+        .logo span {
+            position: relative;
+            display: inline-block;
+            font-size: 40px;
+            color: #fff;
+            text-transform: uppercase;
+            animation: flip 2s infinite;
+            animation-delay: calc(.2s * var(--i))/*2초에 한번씩 지정*/
+        }
+
+        @keyframes flip {
+
+            0%,
+            80% {
+                transform: rotateY(360deg)
+            }
+        }
+
+
+
+
+        .icons {
+            display: none;
+        }
+
+        /* 여기까지 navbar */
+
+
+        
+
+
+
+
+
+        /* 여기까지 main */
+
+        /* 여기까지 footer */
+        @media screen and (max-width:1100px) {
+           
+            .logo { 
+                     position: relative;
+                     margin-left: 10px;
+                
+            }
+            .logo span{
+                font-size: 20px;
+            }
+            
+         
+            .menu li {
+                position: relative;
+                margin: 20px;
+                           
+            }
+            
+               
+            .menu {
+                position: relative;
+                
+                justify-content: center;
+                display: none;
+            }
+
+            .icons li {
+                margin: 0;
+            }
+
+            .menu.active {
+                display: flex;
+                
+                
+           
+            }
+
+            .logo.active {
+                display: none;
+            }
+
+            .icons {
+                
+                display: block;
+            }
+
+            /* 여기까지 navbar */
+        }
+
+
+
+
+        /* 여기까지 main */
+    </style>
+
+</head>
+
+<body>
+    <div class="bar1"></div>
+    <nav class="navigater">
+        <div class="logo" >
+            
+                <span style="--i:1">K</span>
+                <span style="--i:2">B</span>
+                <span style="--i:3">H</span>
+                <span style="--i:4">'</span>
+                <span style="--i:5">s</span>
+                <span style="--i:6">P</span>
+                <span style="--i:7">o</span>
+                <span style="--i:8">r</span>
+                <span style="--i:9">t</span>
+                <span style="--i:10">f</span>
+                <span style="--i:11">o</span>
+                <span style="--i:12">l</span>
+                <span style="--i:13">i</span>
+                <span style="--i:14">o</span>
+            
+        </div>
+
+        <ul class="menu">
+            <li><a href="#">HOME</a></li>
+            <li><a href="#about">ABOUT ME</a></li>
+            <li><a href="#skills">SKILL'S</a></li>
+            <li><a href="#">ETC</a></li>
+        </ul>
+
+
+        <ul class="icons">
+            <li><a href="#"><i class="fa-solid fa-magnifying-glass"></i></a></li>
+            <li><a href="#" class="toggleBtn"><i class="fa-solid fa-align-right"></i></a></li>
+        </ul>
+    </nav>
+
+    <div class="section">
+        <h1>Scroll Down</h1>
+    </div>
+
+    <div class="section bg1" id="about">
+        <h1>Animation 1</h1>
+    </div>
+
+    <div class="section bg2" id="skills">
+        <h1>Animation 2</h1>
+    </div>
+
+    <div class="spacer"></div>
+
+
+
+
+    <script>
+        const $toggleBtn = document.querySelector(".toggleBtn");
+        const $menu = document.querySelector(".menu");
+        const $logo = document.querySelector(".logo")
+
+        $toggleBtn.addEventListener("click", () => {
+            $menu.classList.toggle("active");
+            $logo.classList.toggle("active");
+        })
+        // 여기까지 네브바 메뉴아이콘
+
+    </script>
+
+
+
+</body>
+
+</html>
