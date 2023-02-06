@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>배열과 반복문</title>
+</head>
+<style>
+    @import url("https://fonts.googleapis.com/css?family=Signika+Negative:300,400&display=swap");
+    body{
+        font-family: "Signika Negative", sans-serif;
+    }
+    h2{
+        text-shadow: 2px 2px 2px gray;
+        color: darkgreen;
+    }
+
+</style>
+<body>
+<fieldset>
+    <legend><h2>자료형을 반복문으로 검사해 보자~</h2></legend>
+    <h2>Array</h2>
+    <h2>Object</h2>
+
+</fieldset>
+<fieldset>
+    <legend><h2>문제 1 다음리스트의 모든 값을 더하세요 ~</h2></legend>
+    <ul id="ex1">
+        <li>1</li>
+        <li>4</li>
+        <li>9</li>
+        <li>16</li>
+        <li>25</li>
+        <li>36</li>
+        <li>49</li>
+    </ul>
+    <p id="ex1Result"></p>
+    <script>
+        //js 가 어려운 이유 방법이 아주 많다.
+        //id 선택자는 노드 객체를 바로 선택할 수 있다.
+        // console.log(ex1.childNodes);
+
+        // console.log(ex1.children); //HTMLCollection 배열인데 Array 보다는 필드가 적은 배열
+        // console.log(ex1.getElementsByTagName("#ex1 li"));
+        // console.log(ex1.children[5].innerText);
+
+        const ex1 = document.querySelector("#ex1").children;
+        let sum2 = 0;
+
+        for (let i = 0; i < ex1.length; i++) {
+            sum2 += parseInt(ex1[i].innerText);
+        }
+
+        document.querySelector("#ex1Result").innerText = `총합은: ${sum2}`;
+
+        //Number(문자열) parseInt(문자열) parseFloat(문자열)
+        //li 써진 모든 text를 수로 더한 결과를 출력하세요
+      /*  const ex1Node=document.getElementById("ex1");
+        console.log(ex1Node);*/
+    </script>
+</fieldset>
+
+<fieldset>
+    <legend><h2 id="ex2H2">ex2 li에 작성된 문자열을 li의 color 로 변경하세요!</h2></legend>
+    <ul id="ex2">
+        <li>red</li>
+        <li>lightblue</li>
+        <li>rgb(100,200,150)</li>
+        <li>yellow</li>
+        <li>rgb(255,255,255,.5)</li>
+        <li>#00FF11</li>
+        <li>#0F1</li>
+    </ul>
+    <script>
+        const arr2= document.getElementById("ex2").children;
+        for (let a of arr2){
+            a.style.color= a.innerText;
+        }
+        
+
+    </script>
+</fieldset>
+
+<fieldset>
+    <legend><h2>문제3 다음 리스트에서 수를 제외한 모든 값을 더하세요~(힌트 NaN)</h2></legend>
+    <ul id="ex3">
+        <li>18.33em</li>
+        <li>1</li>
+        <li>4.3</li>
+        <li>9.00</li>
+        <li>십오</li>
+        <li>16</li>
+        <li>25.12</li>
+        <li>36</li>
+        <li>null</li>
+        <li>49</li>
+    </ul>
+
+</fieldset>
+
+<script>
+    const arr=[10,-20,30,55,200,-250]; //모든 값을 더하세요~
+    /*
+    for(int i=0;i<arr.length;i++){ //선언문; 조건식 ;증감식
+    for(const a: arr){
+        sum+=arr[a];
+    }
+    }*///자바에서 반복문
+    /*
+    java while
+    int i=0; //선언식
+    while(i<arr.length){//검사식
+        i++;//증감식
+        }
+    Iterator i=arr; // Iterator 객체
+    while(i.next()){
+        i.nextValue();
+        }
+        while(true){}//application 의 무한 반복문
+     */
+    let sum=0;
+    for(let i=0;i<arr.length;i++){
+        sum+=arr[i];
+    }
+
+
+    console.log(`for 로 arr의 모든자료를 더한 값 : ${sum}`);
+    sum=0;
+    for(let a of arr){
+        sum+=a;
+    }
+    console.log(`for 로 arr의 모든자료를 더한 값 : ${sum}`);
+    //for in - js 밖에 없는것 !!
+    sum=0;
+    for (let i in arr){//in은 key 를 반환하는데 Array 일 때는 index 를 반환.
+        sum+=arr[i];
+    }
+    console.log(`for 로 arr의 모든자료를 더한 값 : ${sum}`);
+
+
+
+</script>
+</body>
+</html>

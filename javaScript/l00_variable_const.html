@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>변수와 상수</title>
+</head>
+<style>
+    @import url("https://fonts.googleapis.com/css?family=Signika+Negative:300,400&display=swap");
+    body{
+        font-family: "Signika Negative", sans-serif;
+    }
+    h2{
+        text-shadow: 2px 2px 2px gray;
+        color: darkgreen;
+    }
+</style><body>
+
+<fieldset>
+<legend><h2>변수와 상수에 대해 배워보자 </h2></legend>
+<p>js의 변수와 상수는 타입을 명시하지 않는다( 모든 타입의 데이터를 참조할 수 있다.)</p>
+</fieldset>
+<fieldset>
+    <legend><h2>변수 var let</h2></legend>
+<ul>
+    <li>js의 변수는 타입을 명시하지 않는다.</li>
+    <li>변수는 변할 수 있는 수로 참조하는 데이터를 바꿀 수 있다.</li>
+    <li>var : 윈도우 필드로 정의되고 전역에만 선언 가능하다.scope가 확실하지 않다.</li>
+    <li>let : scope({}블럭)가 명확한 변수로 es6 문법이다. </li>
+</ul>
+</fieldset>
+<fieldset>
+    <legend><h2>상수와 const</h2></legend>
+<p>처음 선언하면 참조하는 data 를 바꿀 수 없는 것을 상수라하고 es6에 추가 되었다.
+(보통 자료형이나 함수를 선언할 때 사용한다.) 예)Math.PI : 변하지 않는 정보</p>
+</fieldset>
+<script>
+    var a; //undefined (js의 기본형 : undefined 오류를 없애기 위해)
+    console.log(a)  //java 포함한 대부분의 언어에서는 오류를 발생.
+    a = null; //null도 기본형이다.
+    console.log(1 + a); //null 을 0으로 형변환
+    a = 13; //변수 a가 변할 수 있어서 변수다!
+    a = "안녕";// js의 변수는 모든 타입의 데이터를 참조할 수 있다.
+    console.log(a + "하세요");
+    //int n=10; //java의변수
+    let i=30; //var와 동일한데 var는 전역에만 선언가능(hoisting)
+
+    // const PI; //상수는 선언과 동시에 대입해야한다. (실행오류)
+    const PI=3.14;
+    // PI=3.24; //한번 선언한 값은 바꿀 수 없다.
+
+    const  arr=[1,2,3,4,5];
+    console.log(arr)
+    //arr=13; //arr 가 참조하는 data 를 변경하는 것은 불가능!
+    arr[0]=100;//arr 가 참조하는 data 의 필드는 변경 가능
+    console.log(arr);
+
+
+</script>
+</body>
+</html>
