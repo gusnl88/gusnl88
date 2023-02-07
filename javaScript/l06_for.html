@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>배열과 반복문</title>
+</head>
+<style>
+    @import url("https://fonts.googleapis.com/css?family=Signika+Negative:300,400&display=swap");
+    body{
+
+        font-family: "Signika Negative", sans-serif;
+    }
+    h2{
+        text-shadow: 2px 2px 2px gray;
+        color: darkgreen;
+    }
+
+</style>
+<body oncontextmenu="return false" onselectstart="return false">
+
+<fieldset>
+    <legend><h2>자료형을 반복문으로 검사해 보자~</h2></legend>
+    <h2>Array</h2>
+    <h2>Object</h2>
+
+</fieldset>
+<fieldset>
+    <legend><h2>단수,단수함수,복수,복수함수...</h2></legend>
+    <ul>
+        <li>document</li>
+        <li>dom traveling 의 결과로 단수가 나오는 것과 복수가 나오는 것 암기</li>
+        <li>단수 : id.formName(==forms["formName"]).parentNode(부모노드)</li>
+        <li>단수함수 : getElementById("id"),querySelector("cssSelector")'.', '#' ,'>', ',', '[]'.......</li>
+        <li>복수 : children(자식노드) childNodes(텍스트노드+자식노드) HTMLCollection 배열이 반환</li>
+        <li>복수함수 : getElementsByTagName("tag"),getElementsByClassName("class") =>HTMLCollection</li>
+        <li>,querySelectorAll("cssSelector") =>NodeList(내부반복문을 포함하는 배열 타입)</li>
+        <li>parentNode, children,childNodes : 해당 노드에 포함된 필드 (새롭게 탐색하지 않는다.)</li>
+    </ul>
+</fieldset>
+<fieldset>
+    <legend><h2>문제 1 다음리스트의 모든 값을 더하세요 ~</h2></legend>
+    <ul id="ex1">
+        <li>1</li>
+        <li>4</li>
+        <li>9</li>
+        <li>16</li>
+        <li>25</li>
+        <li>36</li>
+        <li>49</li>
+    </ul>
+    <p id="ex1Result"></p>
+    <script>
+        //document
+        //dom traveling 의 결과로 단수가 나오는 것과 복수가 나오는 것 암기
+        //단수 : id.formName(==forms["formName"]).parentNode(부모노드)
+        //단수함수 : getElementById("id"),querySelector("cssSelector")'.', '#' ,'>', ',', '[]'.......
+        //복수 : children(자식노드) childNodes(텍스트노드+자식노드) HTMLCollection 배열이 반환
+        //복수함수 : getElementsByTagName("tag"),getElementsByClassName("class") =>HTMLCollection
+        //,querySelectorAll("cssSelector") =>NodeList(내부반복문을 포함하는 배열 타입)
+
+        //parentNode, children,childNodes : 해당 노드에 포함된 필드 (새롭게 탐색하지 않는다.)
+
+        //js 가 어려운 이유 방법이 아주 많다.
+        //id 선택자는 노드 객체를 바로 선택할 수 있다.
+        // console.log(ex1.childNodes);
+
+        // console.log(ex1.children); //HTMLCollection 배열인데 Array 보다는 필드가 적은 배열
+        // console.log(ex1.getElementsByTagName("#ex1 li"));
+        // console.log(ex1.children[5].innerText);
+
+        const ex1list=document.getElementById("ex1").children;
+        let exSum=0;
+        // for(let i=0;i<ex1list.length;i++){
+        //     exSum += parseInt(ex1list[i].innerText);
+        // }
+        // document.getElementById("ex1Result").innerText=`총합은 : ${exSum}`;
+
+        exSum=0;
+        for(let a of ex1.children){
+            exSum+= parseInt(a.innerText);
+        }
+        document.getElementById("ex1Result").innerText=`총합은 : ${exSum}`;
+
+        //innerHTML :해당 노드의 자식으로 문자열을 노드객체로 만들어 추가하는 필드
+        //innerText :
+
+        //Number(문자열) parseInt(문자열) parseFloat(문자열)
+        //li 써진 모든 text를 수로 더한 결과를 출력하세요
+      /*  const ex1Node=document.getElementById("ex1");
+        console.log(ex1Node);*/
+    </script>
+</fieldset>
+
+<fieldset>
+    <legend><h2 id="ex2H2" >ex2 li에 작성된 문자열을 li의 color 로 변경하세요
+    (마우스 포인터가 li에 들어오면 ,나가면 다시 블랙으로 변경)</h2></legend>
+    <ul id="ex2">
+        <li>red</li> <!--문자열로된 -->
+        <li>lightblue</li>
+        <li>rgb(100,200,150)</li>
+        <li>yellow</li>
+        <li>rgba(0,0,0,.5)</li>
+        <li>#00FF11</li>
+        <li>#0F1</li>
+    </ul>
+    <script>
+        //css Cascading Style Sheets : 브라우저에 노드를 그래픽으로 나타내는 명세서
+        //1 Cascading : 부모 요소의 스타일을 자식이 따르는 것.
+        //2 Cascading : 선택자의 우선순위가 존재한다. tag 1,class 10, id 100.inline 1000,!important
+        //3 Cascading : External Style (다운) > Internal Style (내부 style)> Inline Style(요소에 작성)
+        //Inline Style :요소에 직접 쓰거나 자바스크립트로 요소를 찾아서 스타일을 주면 인라인에 적용된다!
+        // (js로 요소를 동적으로 만들기 위해 존재)
+        //브라우저가 HTML 을 노드 개체로 만들기 전에 꼭 DomTree 를 생성해서 css 명세서(css 선택자의 dom traveling)
+        // 를 이용해 그래픽을 그린다.
+
+        //스타일은 노드 개체의 속성이다!!
+
+        //이벤트 속성 swing 할때 스티브잡스 마우스 gui mac os 시초 ->마이크로소프트 ->window
+        //노드 개체의 이벤트 속성 (GUI 가 동작하기 위한 최소의 장치 = MouseEvent)
+        //브라우저는 브라우저에 발생하는 모든 것을 이벤트로 정의한다.
+        // (EventListener 가 너무 훌륭하게 동작해서 모든 이벤트를 처리함=>node.js(너무좋아 나도좀쓸까? 하고 나온것))
+        //EventListener : 이벤트가 발생하는 것을 무한히 대기(무한반복문), 멀티스레드로 처리하는 객체 (비동기 순서 상관없이) (동기 순서대로 실행)
+        //EventListener 는 멀티스레드로 동작하지만 물리적으로는 1 thread 를 멀티스레드처럼 효율적으로 사용하는 상태이다.
+        //이런 상태의 스레드를 경량 스레드라 부른다. node.js가 EventListener 경량스레드를 사용하기 위해 등장 했다.
+
+        function Calc(){
+            this.onclick=function (){}
+        }
+        ex2H2.onclick=function (e){
+            //1. ex2H2.style.color="purple";
+            //2. this.style.color="purple";//this : 객체 필드 접근자.(ex2H2 노드 개체)
+            console.log(e);// 이벤트에 대한 정보
+            console.log(e.target);// 이벤트가 발생한 대상
+            e.target.style.color='purple';//3 가지 방법
+        }
+        // const ex2List=ex2.children;
+        // console.log(ex2List);
+        // for(let i=0;i<ex2List.length;i++){
+        //     let li=ex2List[i];
+        //     console.log(li.innerText);
+        //     li.onmouseenter=function (e){
+        //         this.style.color=this.innerText;
+        //     }
+        //     li.mouseout=function (e){
+        //         this.style.color="black";
+        //     }
+        // }
+        //이벤트 필드는 함수고 콜백함수를 재정의 해야한다. (재정의 한 함수가 이벤트가 발생할때 마다 호출된다.)
+        //요소 (tag 요소) //노드개체 노드객체
+        //객체 필드 (속성,프로퍼티)
+        //노드 개체 필드 (css,event)
+        ex2H2.onmouseenter=function (){
+            this.style.color='blue';
+        }
+        ex2H2.onmouseout=function (){
+            this.style.color="black";
+        }
+
+        for (let inM of ex2.children){
+            inM.onmouseenter=function (){inM.style.color = inM.innerText;}}
+        for(let outM of ex2.children){
+            outM.onmouseout=function (){this.style.color="black";}}
+
+        
+
+    </script>
+</fieldset>
+
+<fieldset>
+    <legend><h2>문제3 다음 리스트에서 수 아닌 것을 제외한 모든 값을 더하세요~(힌트 NaN)</h2></legend>
+    <ul id="ex3">
+        <li>18.33em</li>
+        <li>1</li>
+        <li>4.3</li>
+        <li>9.00</li>
+        <li>십오</li>
+        <li>16</li>
+        <li>25.12</li>
+        <li>36</li>
+        <li>null</li>
+        <li>49</li>
+    </ul>
+    <p id="ex2Result"></p>
+</fieldset>
+<script>
+
+    // const ex3 = document.querySelector("#ex3");
+    // let ex3sum = 0;
+    //
+    // for (let i = 0; i < ex3.children.length; i++) {
+    //     const item = ex3.children[i].innerText;
+    //     const number = parseFloat(item);
+    //
+    //     if (!isNaN(number)) {
+    //         ex3sum += number;
+    //     }
+    // }
+    // document.getElementById("ex2Result").innerText ="총합은 :" +ex3sum;
+    const ex3lis=ex3.children;
+    let exsum=0;
+    for(let li of ex3lis){
+        // console.log(li.innerText, parseFloat(li.innerText));
+        let num =parseFloat(li.innerText);
+        if(!Number.isNaN(num)){
+            exsum+=num;
+        }
+
+    } document.getElementById("ex2Result").innerText="총합"+exsum;
+    
+
+</script>
+
+<script>
+    const arr=[10,-20,30,55,200,-250]; //모든 값을 더하세요~
+    /*
+    for(int i=0;i<arr.length;i++){ //선언문; 조건식 ;증감식
+    for(const a: arr){
+        sum+=arr[a];
+    }
+    }*///자바에서 반복문
+    /*
+    java while
+    int i=0; //선언식
+    while(i<arr.length){//검사식
+        i++;//증감식
+        }
+    Iterator i=arr; // Iterator 객체
+    while(i.next()){
+        i.nextValue();
+        }
+        while(true){}//application 의 무한 반복문
+     */
+    let sum=0;
+    for(let i=0;i<arr.length;i++){
+        sum+=arr[i];
+    }
+
+    console.log(`for 로 arr의 모든자료를 더한 값 : ${sum}`);
+    sum=0;
+    for(let a of arr){
+        sum+=a;
+    }
+    console.log(`for 로 arr의 모든자료를 더한 값 : ${sum}`);
+    //for in - js 밖에 없는것 !!
+    sum=0;
+    for (let i in arr){//in은 key 를 반환하는데 Array 일 때는 index 를 반환.
+        sum+=arr[i];
+    }
+    console.log(`for 로 arr의 모든자료를 더한 값 : ${sum}`);
+
+
+
+</script>
+</body>
+</html>
