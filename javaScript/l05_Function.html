@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>자바스크립트의 함수!</title>
+</head>
+<style>
+    @import url("https://fonts.googleapis.com/css?family=Signika+Negative:300,400&display=swap");
+    body{
+        font-family: "Signika Negative", sans-serif;
+    }
+    h2{
+        text-shadow: 2px 2px 2px gray;
+        color: darkgreen;
+    }
+    b{
+        background-color: lightcoral;
+        color: white;
+    }
+    h3{text-shadow: 2px 2px 2px gray;
+        color: dodgerblue;
+
+    }
+
+</style>
+<body oncontextmenu="return false" onselectstart="return false">
+<fieldset>
+    <legend><h2>연산의 집합 함수 (method)</h2></legend>
+    <h3>함수 선언과 사용법</h3>
+    <ul>
+        <li>function 이름(매개변수){return 반환값;} : 작성법</li>
+        <li>이름(매개변수); : 호출법,</li>
+        <li>이름(undefined);: 매개변수가 있는데 안쓰면 undefined 가 된다.</li>
+        <li>return; : 작성하면 다음 코드가 있어도 함수를 종료한다.</li>
+        <li>매개변수 : 이름을 지역변수 이름과 동일하게 작성하면 오류가 발생했었는데 ->지금은 아무문제 없다. let 을 사용할 필요없다.</li>
+        <li>함수를 선언하면 실행전에 인터프리터 엔진(V8)이 타입인 줄 알고 미리 프로토 타입을 만든다.</li>
+    </ul>
+</fieldset>
+<fieldset>
+    <legend><h2>함수의 선언법 2</h2></legend>
+    <ul>
+        <li>const 함수이름 = function(매개변수){return 반환값;} : 이름이 없는 함수를 변수 or 상수가 참조</li>
+        <li>인터프리터 엔진이 함수를 찾지 못해서 미리 프로토 타입을 만들지 않는다.
+            (해당 코드가 실행될 때 까지 함수는 미리 만들어 지지 않는다.)</li>
+        <li>사람들이 왜 함수가 나중에 선언 됐는데 그앞에서 호출되는가? 오류 아닌가 ?-> 오류를 막으려고 등장한 방식</li>
+        <li>함수선언이 너무 많으면 js 실행이 너무 느려져서 우선 실행하면서 함수가 선언되게 하기 위해 사용됨.</li>
+    </ul>
+</fieldset>
+
+<fieldset>
+    <legend><h2>함수의 선언법 3</h2> </legend>
+        <ul>
+            <li>const 함수이름  = (매개변수)=>{return 반환값;} : 화살표함수를 변수 or 상수가 참조</li>
+            <li>()=>{} : 실행만될 함수를 타입으로 인지하는 js의 문제를 해결하기 위해 일반함수로 화살표 함수를 도입(es6)</li>
+            <li>모든 함수를 프로토 타입으로 인지하면 메모리를 많이 사용하기 때문에 문제가 발생할 수 있다.</li>
+            <li>함수와 필드 바이딩문제로 화살표함수가 등장!(초초초초 고급!)</li>
+            <li></li>
+        </ul>
+
+</fieldset>
+<script>
+    /*java
+    class Calc{
+        public int sum (int a,int b){
+        retrun a+b;
+    }
+     */
+    //js의 함수 규칙(매개변수에 타입도없고 반환타입도 없다)
+
+    console.log(sum(30));
+    console.log(sum(30,40));
+
+    const sum3=(a,b)=>{  //js의 화살표 함수
+        return a+b;
+    }//프로토 타입이 없는 함수 (타입(객체)이될 수 없다!!,순수한 실행의 함수다)
+
+    console.log(sum3(30,60));
+    const sum2=function (a,b){ //이름이 없는 함수를 변수가 참조하는 법 (선언하고 나서 사용가능 :함수의 hoisting 현상을 막기위해)
+        return a+b;
+    }
+    console.log(sum2(30,40));
+    //함수는 프로토타입이기 때문에 V8엔진이 함수만 찾아서 메모리에 생성 후 저장한다~
+    //JVM 실행하기 전에 모든 클래스와 함수를 메소드 영역에 저장
+    function sum(a,b){ //함수를 정의하면서 이름을 짓는 법.(어디서든 사용 가능 함수의 hoisting 현상)
+        return a+b;
+    }
+
+    console.log(`sum(10,11)= ${sum(10,11)}`);
+    console.log("sum(10,11)= "+sum(10,11));
+    function  Calc(){
+        this.sum=function (a,b){//this 필드 접근자 : 해당 타입이 객체일때
+        return a+b;}
+    }
+
+    console.log(new Calc().sum(10,11));
+    let calc = new Calc();
+    console.log(calc.sum(2, 3));
+    console.log(`new Calc().sum(10,11)= ${new Calc().sum(10,11)}`);
+
+    console.log(sum.prototype);
+    console.log(sum2.prototype);
+    console.log(sum3.prototype);//화살표 함수는 프로토타입이 없는 순수 메소드.(아는사람 상위1%)
+</script>
+</body>
+</html>

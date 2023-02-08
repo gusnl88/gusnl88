@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Object 와 자료형</title>
+</head>
+<style>
+    @import url("https://fonts.googleapis.com/css?family=Signika+Negative:300,400&display=swap");
+    body{
+        font-family: "Signika Negative", sans-serif;
+    }
+    h2{
+        text-shadow: 2px 2px 2px gray;
+        color: darkgreen;
+    }
+    b{
+        background-color: lightcoral;
+        color: white;
+    }
+    h3{text-shadow: 2px 2px 2px gray;
+        color: dodgerblue;
+
+    }
+</style>
+<body oncontextmenu="return false" onselectstart="return false">
+    <fieldset>
+        <legend><h2>자바스크립트의 자료형들</h2></legend>
+        <p>자료형(참조형) 데이터 : 복수의 데이터를 참조하는 것을 의미(프로그래밍에서 객체를 의미)</p>
+        <ul>
+            <li>Object : 모든 프로토타입의 부모 타입 (js는 프로토 타입 언어)</li>
+            <li>프로토타입 언어 : 타입을 명시하면 프로토타입(생성자가 명시됨)이 생성되고 객체 생성시 프로토 타입을 참조(객체지향 언어와 크게 다르지 않다.)</li>
+            <li>new 연산자 : 프로토타입의 명시된 생성자를 호출해서 객체를 만들어 반환한다.</li>
+            <li>new Object() == {} :객체 생성을 리터럴하게 할 수 있다.</li>
+            <li>js는 함수가 타입이 되기 떄문에 함수를 명시하면 프로토 타입이 생성된다.(타입과 함수(실행의 모음)의 구분이 없다.)</li>
+        </ul>
+    </fieldset>
+
+    <fieldset>
+        <legend><h2>(다형성,추상화,상속,정보은닉,캡슐화)객체지향 언어 자바와 프로토타입언어 자바스크립트의 공통점</h2></legend>
+        <ul>
+            <li>모든 타입의 부모는 Object</li>
+            <li>new 연산자로 생성자를 호출하면 객체를 반환(객체를 반환한다고 객체지향이 아니다.타입이 명확한언어,문법 이어야한다.)</li>
+            <li>기본형과 자료형을 구분한다.(파이썬은 모두가 자료형 기본형같은 것들이 있다)</li>
+            <li>힙메모리의 GC가 객체의 메모리 정리를 자동으로 한다.</li>
+            <li>캡슐화가 가능(es6 에서 추가)</li>
+            <li>둘다 class 가 존재한다 (X js의 class 는 물리적으로 존재하지 않는 Sugar Static(문법적 설탕),lambda 와동일)</li>
+        </ul>
+    </fieldset>
+    <fieldset>
+        <legend><h2>인터프리터 언어와 컴파일 언어의 차이</h2></legend>
+        <ul>
+            <li>인터프리터 언어 (js,python,ruby):문자열로된 코드를 컴파일하면서 실행 (문자열로된 코드가 바로 배포) </li>
+            <li>컴파일 언어 (Java,c,c++,):문자열로 작성한 코드가 컴파일이되고 컴파일된 문서가 배포된다.(Java->class)</li>
+            <li>컴파일 언어는 컴파일 시 컴출하는 오류를 배포하지 않는다.(안전하다 String a; sout(a); )</li>
+            <li>인터프리터 언어는 오류가 있는 코드를 배포할 수 있다.(안전하지 않다.)</li>
+            <li>컴파일 언어가 스크립트 언어보다 실행이 빠르다.(class>>문자열 보다 더빠르게 엔진이 해석)</li>
+            <li>인터프리터 언어는 컴파일 과정이 없어서 구현이 빠르다.</li>
+        </ul>
+    </fieldset>
+<fieldset>
+    <legend><h2>객체지향 언어와 프로토타입 언어(함수형 언어)의 차이</h2></legend>
+    <ul>
+        <li>class 를 객체의 타입으로 사용한다. <-> 프로토 타입을 타입으로 사용</li>
+        <li>상속은 부모의 필드를 물려받고 재정의 할 수 있다.<->부모 프로토타입을 링크로 사용할 수 있다.</li>
+        <li>class 는 오직 타입이다. <->프로토 타입은 객체처럼 생성되어 있다.</li>
+        <li>함수가 타입이될 수 없다 <-> 함수가 타입이 된다. (매개변수로 함수를 사용할 수 있고 함수를 변수가 참조할 수도 있다.)</li>
+    </ul>
+
+</fieldset>
+    <fieldset>
+        <legend><h2>Js 에서 타입을 명시하고 객체를 생성하는 방법 <b>(암기!!)</b></h2></legend>
+        <ul>
+            <li>함수를 정의하면 프로토타입이 생성됨 (함수명은 파스칼 규칙:개발자간의 약속)</li>
+            <li>필드는 this 로 선언 (this : 해당 함수가 객체가 되었을 때 필드 접근자!! 중요!!!)</li>
+            <li>함수의 이름과 매개변수가 생성자로 작성됨.</li>
+            <li>new 연산자로 함수를 호출하면 생성자가 반환됨.</li>
+            <li>주의 : 반환값(리턴)을 작성해도 동작하지 않는다. (new 연산자 없이)일반 함수처럼 호출되긴 한다.</li>
+        </ul>
+    </fieldset>
+
+    <fieldset>
+        <legend><h2>ja 에서 타입 명시없이 객체를 생성하는 방법 1</h2></legend>
+        <ol>
+            <li>const o=new Object();</li>
+            <li>o.property(==필드,속성)=value;(기본값,자료형,함수)</li>
+        </ol>
+    </fieldset>
+    <fieldset>
+        <legend><h2>ja 에서 타입 명시없이 객체를 생성하는 방법 2</h2></legend>
+        <ol>
+            <li>const o={}; == new Object();</li>
+            <li>{property : value , "property" : value };</li>
+            <li>property 는 중복될 수 없다. (Map.key 가 중복이 되지 않는 Set)</li>
+            <li>key 는 변수명==문자열,수,symbol 로 작성할 수 있다.(필드명을 수로 작성하면 오름차순 정렬이 된다.)</li>
+            <li>JSON : Object 명세서를 객체선언에 바로 사용하는 경우 (Object 를 리처럴하게 선언)</li>
+            <li>일반적으로 사용되는 JSON 은 이 명세서가 보기 좋고 메모리 절약을 하고 통신 속도가 빨라서 문자열로 사용되는 것을 말한다.</li>
+            <li>예)person {name : "봉현"} (객체) => person.json "{\"name\":\"경민"}" (문서)</li>
+            <li>객체정보를 통신으로 전달할 때 json 이 등장하기 전에 xml 을 통신에서 사용함</li>
+            <li>
+                    <xmp>
+                    <personList>
+                    <person>
+                        <name>경민</name>
+                    </person>
+                        <person>
+                        <name>경민</name>
+                    </person>
+                        <person>
+                        <name>경민</name>
+                    </person>
+                    </personList>
+
+                    ==personList.json [
+                                        {\"name\":\"경민\"},
+                                        {\"name\":\"은정\"},
+                                        {\"name\":\"재연\"}
+                    ]
+                </xmp>
+            </li>
+            <li>통신의 시간과 비용은 통신하는 문서의 길이(크기)에 비례하면서 증가한다.(xml 이 json 보다 더 느리고 비용이 더 든다.)</li>
+            <li>xml 은 문서고(binaryCode-변환과정 o) json 은 오직 문자열(Text-변환과정 x)로만 이루어진 문서(해석이 빠르다)</li>
+            <li>html 통신시 json 으로 통신하면 Object 로 변환 가능하고 xml 은 Document 로 사용해야 한다.(java JackSon -> 자바객체로 변환)
+                <ul>
+                    <li>JSON: const ps=JSON.parse(personList); ps.[1].name;  -> "은정" (필드로 접근가능)</li>
+                    <li>XML : const ps = personList.xml;
+                        ps.getElementsByTagName("person")[1].getElementsByTagName("name")[0].textNode; -> "은정"
+                        (domTree 검색 : Dom Traveling)
+                    </li>
+                </ul>
+            </li>
+            <li>xml 의 value 는 무조건 text 이고 json 의 value 는 기본형을 구분할 수 있다.(엄청중요!!)
+                <ul>
+                    <li>
+                        <xmp><age>38</age> -> "38" (string)</xmp>
+                    </li>
+                    <li>{age:38} ->정수 38 (number or int)</li>
+                    <li>
+                        <xmp><married>true</married> -> "true"</xmp>
+                    </li>
+                    <li>
+                        {Married : true} -> (boolean) true
+                    </li>
+                    <li>JSON 을 명시할 때 리터럴하게 선언하면 객체형 변환시 기본형으로 파싱된다.
+                        (symbol 제외)(타입을 명시 할 수 있다)</li>
+                    <li>xml 은 vlaue 가 무조건 text 기 때문에 다른 기본형으로 사용하고 싶다면 형변환을 해야한다.
+                        (타입을 명시할 수 없다.)</li>
+                    <li>JSON 사용시 주의할 점 : undefined 와 함수를 작성하면 안된다.
+                        (함수를 전달하면 함수를 싱행하면서 해킹을 할 수 있다.)</li>
+
+                </ul>
+            </li>
+            <li>xml 이 key 와 value 를 더 안전하게 전달한다.(마크업 언어가 문자열보다 안전하다-유일한 장점)
+                예) {"name: 경민",age :38}; : json 파싱에 오류가 발생가능</li>
+        </ol>
+    </fieldset>
+    <fieldset>
+        <legend><h2>객체의 필드를 호출하는 방법</h2></legend>
+        <ul>
+            <li>let pName=person.name;  :호출</li>
+            <li>let pName=person["name"]  :필드를 문자열로 호출;</li>
+            <li>let age=person.10; : 오류!(숫자로 된 필드는 무조건 []로호출</li>
+            <li>let age=person.[10]; </li>
+            <li>자바는 수로 된 필드를 정의할 수 없다.!!!!  (자바스크립트만 가능)</li>
+            <li>optional channing : personList[3]?.person.name (null.name 실행시 발생하는 오류)</li>
+            <li>optional channing : personList[3].person?.name (if(person!=null) person.name)</li>
+            <li>"property" in 객체 : 해당하는 객체에 필드가 있는지 검사식.</li>
+            <li>for(let propertyName in 객체){} : 객체에 존재하는 필드 수 만큼 반복문 실행</li>
+            <li>for(let propertyName in 객체){객체.propertyName;} (X) 오류 (문자로 된 필드는 무조건 대괄호로 호출)</li>
+            <li>for(let propertyName in 객체){객체[propertyName];} (o) 오류 (문자로 된 필드는 무조건 대괄호로 호출)</li>
+        </ul>
+    </fieldset>
+<script>
+
+    function  Person(name,age){ //타입으로 사용될 함수는 파스칼표기법을  사용.
+            this.name=name; //this : 객체의 필드 접근자 (js는 필드 정의할 때도 사용됨)
+            this.age=age;
+        //type은 new 연산자 호출시 객체를 반환한다고 이미 명시되 있어서 return 을 작성할 수 없다.
+    }
+
+    console.log(Person) //코드가 출력
+    console.log(Person.prototype) //함수를 명시하면 프로토타입을 생성한다.(생성자가 존재)(자바스크립트 초초초고급!)
+    const p=new Person("봉현",36);//Person.Prototype 을 기반으로 객체를 생성
+    console.log(p)
+    console.log(p.__proto__);//객체의 타입 (.__proto__:객체의 부모 프로토타입을 찾는 링크)
+    console.log(p.__proto__.__proto__);//객체의 타입의 부모타입 (Object의 프로토타입)
+    console.log(p.__proto__.__proto__.__proto__);//Object의 부모 타입은 없다.
+
+    function sum(a,b){//연산의 집합으로 사용되는 함수는 낙타표기법을 사용.
+        return a+b;
+        }
+
+
+
+    console.log(sum);
+    console.log(sum.prototype);
+    console.log(sum(10.33,2.55));
+
+    //Person과 똑같은 객체를 타입 명시 없이 만들어 보기
+
+    const person=new Object();//자료형을 참조할때는 상수로 작성한다.(타입이 명확하지 않아서)
+    person.name="김봉현"; //객체에 필드를 정의하는 방법
+    person.age=36;
+    console.log(person);//{name: '김봉현', age: 36}
+
+    //{name: '김봉현', age: 36} : 자바스크립트의 오브젝트 명세서 JavaScript Object Notation (JSON)
+    //JSON : Object 를 설명하기 위한 표기법(리터럴하게 오브젝트를 명시한다.)
+
+    const person2={name:"김봉현", age:36 , name : "경민"};
+    //{} == new Object();
+    //
+    console.log(person2);
+    console.log( "name" in person2 );//in : 필드를 검사하는 연산자 (필드가 객체에 있는지)
+    console.log( "married" in person2 );
+    for(let name in person2);
+</script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>배열의 내부 반복문(이터레이션)</title>
+</head>
+<style>
+    @import url("https://fonts.googleapis.com/css?family=Signika+Negative:300,400&display=swap");
+
+    body{
+
+        font-family: "Signika Negative", sans-serif;
+    }
+    h2{
+        text-shadow: 2px 2px 2px gray;
+        color: darkgreen;
+    }
+    h3{text-shadow: 2px 2px 2px gray;
+        color: dodgerblue;
+
+    }
+    b{
+        background-color: lightcoral;
+        color: white;
+    }
+
+</style>
+<body oncontextmenu="return false" onselectstart="return false">
+
+<fieldset>
+    <legend><h2>배열의 선언과 내부 반복문과 정렬</h2></legend>
+    <h3>타입이 명확하지 않아서 발생하는 문제 해결을 위한 const 선언</h3>
+    <ul>
+        <li><code>자바의 변수</code> : ArrayList List=new ArrayList();</li>
+        <li>js의 변수 : let list=new Array(); list =13; (o 변수는 모든 타입을 참조가능)</li>
+        <li>list Array 자료ㅕ형이라 생각하고 있다가... 13으로 바뀐줄 모르고 list[3]를 참조하면 undefined 가 반환됨</li>
+        <li>개발자들이 이런 상황을 피하고 싶어서 모든 자료형을 선언할 때 상수(const)로 선언하는 버릇이 있다.</li>
+        <li>강제가 아니라 선택으로 필요에 따라서 상수로 선언하면 된다.</li>
+    </ul>
+</fieldset>
+<fieldset>
+    <legend><h2>배열의 내부 반복문 (Iteration 함수 ) <b>숙지하세요!!</b> </h2></legend>
+    <p>콜백함수 선언시 Iterator 객체를 이용해 배열의 모든 필드에서 콜백 함수를 실행하는 반복문</p>
+    <p>내부 반복문은 기본 함수를 정의하기 때문에 재사용성이 높고 가독성도 좋다.</p>
+    <ul >
+        <li>*이 제일 많이 사용!! every,some 도 그나마 사용.</li>
+        <li>*forEach((value,index,array)=>{}); : 각 요소를 검사하거나 소비하는 반복문</li>
+        <li>*map((value,index,array)=>modify value); return new Array() :각 요소의 값을 변경한 새로운 배열을 반환</li>
+        <li>*reduce((total,value,index,array)=>total 연산 value , total=val ); return total: 모든 요소를 연산한 하나의 결과를 반환</li>
+        <li>*filter((value,index,array)=>(value 비교연산); return new Array() : 조건에 맞는 요소만 남긴 새로운 배열을 반환</li>
+        <li>every((value,index,array)=>(value 비교연산); return boolean :</li>
+        <li>some((value,index,array)=>(value 비교연산); return boolean :</li>
+        <li>find((value,index,array)=>(value 비교연산); return 찾은요소 : </li>
+        <li>findIndex((value,index,array)=>(value 비교연산); return 찾은 요소의 index :</li>
+        <li>includes(찾는 값); return boolean :</li>
+        <li>indexOf(찾는 값, start index=0); return index :</li>
+        <li>lastIndexOf(찾는 값,start index=0); return index:</li>
+    </ul>
+</fieldset>
+<fieldset>
+    <legend><h2>배열의 정렬 함수(쓸일이 그닥...db oder by 에서 이미정렬...)</h2></legend>
+    <h3>배열에 있는 요소가 정렬이 될때까지 반복하는 함수 기본은 문자열을 정렬(코테정도에서 쓸듯)</h3>
+    <ul>
+        <li>Array.sort() : 문자열 오름차순(asc) 정렬</li>
+        <li>Array.reverse() : 문자열 내림차순(desc) 정렬</li>
+        <li>Array.sort((a,b)=>a-b): 수의 오름차순 정렬</li>
+        <li>Array.sort((a,b)=>b-a): 수의 내림차순 정렬</li>
+        <li>Object.sort((a,b)=>a.필드 -b.필드) : 자료형의 필드의 값으로 오름차순(asc) 정렬</li>
+        <li>Object.sort((a,b)=>a.필드 -b.필드) : 자료형의 필드의 값으로 내림차순(desc) 정렬</li>
+    </ul>
+</fieldset>
+<fieldset>
+    <legend><h2>Array 차입과 배열 자료형들</h2></legend>
+    <h3>브라우저에서 js가 실행될때 브라우저가 필요에 의해서 생성하는 배열들이 존재한다. 이 배열의 타입이 Array 가 아니다.</h3>
+    <ul id="test" class="a b c d e">
+        <li>배열 :자료에 순서가 있고(index) 길이가 있는 자료구조(포괄적인 의미)</li>
+        <li>ja.Array :자바스크립트가 배열을 쉽게 선언하고 다룰 수 있도록 만든 자료형</li>
+        <li>java.new 타입[] : 자바에서 index 와 길이만 있는 배열 타입 (보통 Array 라 부른다,길이변경불가능,가볍다,기본형가능)</li>
+        <li>java.util.ArrayList : Array 가 사용하기 불편해서 지원하려고 나온 자료형 (컬렉션 프레임워크,길이변경가능.자료형만 가능,무겁다)</li>
+        <li>브라우저.HTMLCollection : 요소(node)를 배열로 다루기 위해 최초로 등장한 자료형</li>
+        <li>브라우저.NodeList : node 검색이 불편해서 jQuery 처럼 css 선택자로 검색가능한 함수 querySelectorAll 을 추가하면서 만든 배열</li>
+        <li>브라우저.DOMTokenList : classList 가 반환하는 배열로 class 를 다루기 위한 필드를 제공
+            <ul>
+                <li>add() : 요소를 추가하는 함수</li>
+                <li>remove() :요소를 제거하는 함수</li>
+                <li>toggle() :요소의 클레스를 추가 또는 제거를 전환하는 함수 </li>
+                <li>contains() :해당 클레스가 있는지 확인</li>
+                <li>forEach() :각 요소를 검사하거나 소비하는 반복문</li>
+                <li>value : ==className 의 값을 의미</li>
+            </ul>
+        </li>
+        <li>브라우저.RadioNodeList : input type 이 radio 와 checkbox 인 node 를 검색하면 반환되는 배열로
+            type 이 radio 인 경우 선택한 value 가 반환된다.
+        </li>
+
+    </ul>
+    <form name="signup">
+        <p>
+            낚시 <input type="checkbox" name="hobby" value="fishing">
+            독서 <input type="checkbox" name="hobby" value="reading">
+            그림 <input type="checkbox" name="hobby" value="painting">
+            게임 <input type="checkbox" name="hobby" value="gaming">
+        </p>
+        <p>
+            남자<input type="radio" name="gender" value="남">
+            여자<input type="radio" name="gender" value="여자">
+        </p>
+    </form>
+</fieldset>
+<fieldset>
+    <legend><h2>Array.form() Array 가 아닌 배열을 Array 로 바꿔주는 함수</h2></legend>
+    <p>자료형(Object)인데 키가 index 처럼 정의되어있고 length 가 있는 것도 Array 로 바꿀 수 있다.</p>
+</fieldset>
+
+<script>
+    console.log(document.querySelectorAll("li"));
+    console.log(test.classList);
+
+    const hobbies= document.forms.signup.hobby;
+    console.log(hobbies);
+
+    const genders=signup.gender; //signup id 처럼 미 리생성된 선택자
+    console.log(genders);
+
+    const arr=[10,1,3,200,-300];
+    //일반적인 반복문 (외부반복문)
+    for(let i=0;i<arr.length;i++){
+        console.log(i,arr[i]);
+    }
+    //Iterator 를 이용한 외부 반복문
+    for(let num of arr){ //Iterator 의 hasNext() next() 를 이용해 배열에 있는 자료를 빼내는 방식
+        console.log(num);
+    }
+    //자료형의 key 를 이용해서 반복하는 외부 반복문
+    for(let i in arr){//자료가 가진 모든 키가 반환 (index,length,......)
+        console.log(i,arr[i]);
+    }
+    //내부 반복문은 해당 자료형에서 가지고 있어야 사용 가능.(HTMLCollection document 에서 사용하는 배열에는 존재하지 않음)
+    //내부 반복문도 Iterator 객체를 이용해서 실행됨
+    arr.forEach((num,i,array)=>{
+        console.log(i,num,array);
+    });
+
+
+
+
+
+
+
+</script>
+
+
+
+</body>
+</html>
