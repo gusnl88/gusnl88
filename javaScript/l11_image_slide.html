@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>이미지 슬라이더 예제</title>
+</head>
+<style>
+    .imageContainer .images {
+        display: flex;
+        list-style: none;
+        justify-content: center;
+    }
+
+    .imageContainer .images img {
+        width: 300px;
+        height: 200px;
+        object-fit: cover;
+        display: none;
+    }
+
+    .imageContainer .images li.active img {
+        display: block;
+    }
+
+    .imageContainer .navigations {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+    }
+
+    .imageContainer .navigations > li {
+        width: 25px;
+        height: 25px;
+        margin: 0 5px;
+        border-radius: 50%;
+        cursor: pointer;
+        border: 1px solid;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .imageContainer .nextNavigations {
+        display: flex;
+        list-style: none;
+        justify-content: space-between;
+        width: 350px;
+        margin: auto;
+        position: relative;
+        top: -130px;
+        height: 0;
+        font-size: xx-large;
+    }
+
+    .navigations > li:hover, .nextNavigations > li:hover {
+        cursor: pointer;
+        color: blue;
+    }
+</style>
+<h1>이미지 슬라이더 만들기 1번문제</h1>
+<p>navigations 의 수를 누르면 해당 수와 동일한 위치의 이미지만 화면에 보이게 하세요!</p>
+<div class="imageContainer" id="imageSlider">
+    <ul class="images">
+        <li><img alt="" src="img/물총새.jpeg"></li>
+        <li><img alt="" src="img/백조.jpeg"></li>
+        <li class="active"><img alt="" src="img/벌새.jpeg"></li>
+        <li><img alt="" src="img/부엉이.jpeg"></li>
+        <li><img alt="" src="img/올빼미.jpeg"></li>
+        <li><img alt="" src="img/참새.jpeg"></li>
+    </ul>
+    <ul class="nextNavigations">
+        <li><</li>
+        <li>></li>
+    </ul>
+    <ul class="navigations">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+    </ul>
+</div>
+
+<script>
+    const imageSlider = document.getElementById("imageSlider");
+    const images = imageSlider.querySelectorAll(".images li");
+    const navigation = imageSlider.querySelectorAll(".navigations li");
+    const nextNavigation = imageSlider.querySelectorAll(".nextNavigations");
+    let num = 0;
+    function displayImage(index) {
+        images.forEach((image) => {
+            image.classList.remove("active");
+        });
+        images[index].classList.add("active");
+        navigation[index].classList.add("active");
+    }
+    navigation.forEach((nav, index) => {
+        nav.addEventListener("click", () => {
+            displayImage(index);
+        });
+    });
+    function prevBtn() {
+        if (num > 0) num -= 1;
+        else num = images.length - 1;
+        displayImage(num);
+    }
+    function nextBtn() {
+        if (num < images.length - 1) num += 1;
+        else num = 0;
+        displayImage(num);
+    }
+    nextNavigation.forEach((nav) => {
+        nav.firstElementChild.addEventListener('click', () => {
+            prevBtn();
+        })
+    })
+    nextNavigation.forEach((nav) => {
+        nav.lastElementChild.addEventListener('click', () => {
+            nextBtn();
+        })
+    })
+</script>
+
+<style>
+    .sliderContainer .container{
+        position: relative;
+        width: 400px;
+        height: 230px;
+        border: 1px solid;
+        margin: auto;
+        overflow: hidden;
+    }
+    .sliderContainer .images{
+        display: flex;
+        padding-left: 0;
+        list-style: none;
+        justify-content: center;
+        position: absolute;
+    }
+    .sliderContainer .images img{
+        width: 250px;
+        height: 200px;
+        margin: 0px 10px;
+        object-fit: cover;
+    }
+    .sliderContainer .images li.active img{
+        display: block;
+    }
+    .sliderContainer .navigations{
+        padding: 0;
+        list-style: none;
+        display: flex;
+        justify-content: center;
+    }
+    .sliderContainer .navigations>li{
+        width: 25px;
+        height: 25px;
+        margin: 0 5px;
+        border-radius: 50%;
+        cursor: pointer;
+        border: 1px solid;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .sliderContainer .nextNavigations{
+        padding: 0;
+        display: flex;
+        list-style: none;
+        justify-content: space-between;
+        width: 500px;
+        margin: auto;
+        position: relative;
+        top: -130px;
+        height: 0;
+        font-size: xx-large;
+    }
+    .sliderContainer>li:hover,.nextNavigations>li:hover{
+        cursor: pointer;
+        color: blue;
+    }
+</style>
+<h1>이미지 슬라이더 만들기 2번문제</h1>
+<p>navigations 의 수를 누르면 이미지 번호의 이미지가 중앙에 오도록 하세요!</p>
+<p>next 와 prev 버튼을 누르면 이전과 다음 이미지가 중앙에 오도록 하세요!</p>
+<div id="imageSlider2" class="sliderContainer">
+    <div class="container">
+        <ul class="images">
+            <li><img src="img/물총새.jpeg" alt=""></li>
+            <li><img src="img/백조.jpeg" alt=""></li>
+            <li class="active"><img src="img/벌새.jpeg" alt=""></li>
+            <li><img src="img/부엉이.jpeg" alt=""></li>
+            <li><img src="img/올빼미.jpeg" alt=""></li>
+            <li><img src="img/참새.jpeg" alt=""></li>
+        </ul>
+    </div>
+    <ul class="nextNavigations">
+        <li class="prevBtn"><</li>
+        <li class="nextBtn">></li>
+    </ul>
+    <ul class="navigations">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+    </ul>
+</div>
+<script>
+
+</script>
+</body>
+</html>
