@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>this bind</title>
+</head>
+<style>
+    @import url("https://fonts.googleapis.com/css?family=Signika+Negative:300,400&display=swap");
+
+    body{
+
+        font-family: "Signika Negative", sans-serif;
+    }
+    h2{
+        text-shadow: 2px 2px 2px gray;
+        color: darkgreen;
+    }
+    b{
+        background-color: lightcoral;
+        color: white;
+    }
+    h3{text-shadow: 2px 2px 2px gray;
+        color: dodgerblue;
+
+    }
+    a{
+        text-decoration: none;
+    }
+    li{
+        list-style-type: square;
+
+    }
+</style>
+<body oncontextmenu="return false" onselectstart="return false">
+    <fieldset>
+        <legend><h2>this 와 bind 와 화살표 함수</h2></legend>
+        <ul>
+            <li>this : 객체 필드(멤버) 자신을 의미 </li>
+            <li>super : 부모의 필드접근자</li>
+            <li>bind : this 가 정의하고 있는 객체</li>
+            <li>function.bind(Object) : 해당 함수에 this 로 특정 Object bind 할 수 있다.</li>
+            <li>js 에서는 this 소실이라는 문제가 종종 발생한다. 이유를 알면 쉬운데 </li>
+        </ul>
+        <p >timer : <strong id="timerStr"></strong></p>
+        <script>
+            //타이머 타입
+            //타이머 객체를 생성후 호출하면 화면에 출력 되도록 정의.
+
+            class Timer{
+                constructor (id,time=3) {
+                    this.time=time;
+                    this.id=id;
+                    // this.start.bind(this)//this를 어떤것으로 하겟냐??
+                }
+
+                printDom (){
+                    const node=document.getElementById(this.id);
+                    node.innerText= this.time;
+                }
+                start (){
+                    //this 소실 : this 가 실행하는 객체를 bind 하면서 생기는 문제
+                    //setInterval 을 실행하는 객체는 window 기 때문에 setInterval 의 콜백함수의 this 는 window 를 가리킨다.
+                    //bind 로 this 를 Timer 의 멤버로 고정한 새로운 함수를 콜백함수로 사용하면 this 소실을 막을 수 있다.
+
+                  const newFunc=this.setTime.bind(this);
+                    setInterval(newFunc,1000);
+                }
+
+                setTime() {
+                    this.time--;
+                    this.printDom();
+
+
+                }
+            }
+
+
+            const timer=new Timer("timerStr",5);
+
+            timer.printDom();
+            timer.start();
+        </script>
+    </fieldset>
+    <fieldset>
+        <legend><h2>Timer 예제 2</h2></legend>
+
+        <div>
+            <button id="startBtn">start</button>
+            <strong id="timerTxt"></strong>
+            <button id="stopBtn">stop</button>
+        </div>
+
+        <script>
+
+            function TimerApp(startBtnId,stopBtnId,timerTxtId,time=5){
+                this.startBtn=document.getElementById(startBtnId);
+                this.stopBtn=document.getElementById(stopBtnId);
+                this.timerTxt=document.getElementById(timerTxtId);
+                this.time=time;
+
+
+                this.startBtnHandler=function (e){
+                    //setInterVal 1초 1씩 줄어드는 것을 출력하는 것이 목표!
+                    //this 소실 : onclick 을 실행하는 버튼을 this 바인드하고 있다.
+                    this.timerTxt.innerText=this.time;
+                }
+                this.startBtn.onclick=this.startBtnHandler.bind(this);
+            }
+
+            new TimerApp("startBtn","stopBtn","timerTxt",3);
+        </script>
+    </fieldset>
+    <h2>타이머 어플 3</h2>
+    <form name="timerForm">
+        <p>
+            시간 : <input type="number" name="time" value="5000"> 밀리초
+        </p>
+        <p>
+            실행 간격 : <input type="number" name="interval" value="1000"> 밀리초
+        </p>
+        <p>
+            출력 : <input type="text" name="out" readonly>
+        </p>
+        <p>
+            <button type="button" name="start">시작</button>
+            <button type="button" name="stop">멈춤</button>
+            <button type="button" name="exit">종료</button>
+        </p>
+    </form>
+    <script>
+        class TimerApplication{
+            constructor(formName) {
+                this.form=document.forms[formName];
+                this.startBtn=form.start;
+                this.stopBtn=form.stop;
+                this.exitBtn=form.exit;
+                this.outNode=form.out;
+                this.timeNode=form.time;
+                this.intervalNode=form.interval;
+            }
+        }
+      
+    </script>
+
+</body>
+</html>

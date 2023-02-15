@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    @import url("https://fonts.googleapis.com/css?family=Signika+Negative:300,400&display=swap");
+
+    body{
+
+        font-family: "Signika Negative", sans-serif;
+    }
+    h2{
+        text-shadow: 2px 2px 2px gray;
+        color: darkgreen;
+    }
+    b{
+        background-color: lightcoral;
+        color: white;
+    }
+    h3{text-shadow: 2px 2px 2px gray;
+        color: dodgerblue;
+
+    }
+    a{
+        text-decoration: none;
+    }
+    li{
+        list-style-type: square;
+
+    }
+</style>
+<body oncontextmenu="return false" onselectstart="return false">
+    <fieldset>
+        <legend><h2>프로미스 체이닝 과 프로미스화</h2></legend>
+        <h3>
+            <button id="testBtn1">알람!</button>
+        </h3>
+        <h3>Promise.then() 함수가 Promise 객체를 반환하면 시 .then 으로 동기화 할 수 있다.</h3>
+        <pre>
+            //then 다시 Promise 객체를 반환하면 그 다음 then 이 다시 동기화 한다.
+
+            new Promise((resolve)=>{       //일반 동기화!!
+                ..........
+                resolve(처리내역);
+            }).then((처리내역)=>{
+                resolve()를 실행한 시점에 해당 콜백함수가 실행되면서 동기화
+            });
+
+            new Promise((resolve)=>{
+                ..........
+                resolve(1 처리내역);
+            }).then((1 처리내역)=>{
+                 return new Promise((resolve)=>{
+                     ...........
+                     resolve(2 처리내역);
+                  })
+            }).then((2 처리내역)=>{
+                    return new Promise((resolve)=>{
+                     ...........
+                     resolve(3 처리내역);
+               }).then((3 처리내역)=>{
+                .............4번째 처리 끝~
+              });
+            });
+        </pre>
+        <script>
+            //alert 2초뒤에 나오면 다시 2초뒤 또다시 2초뒤 또다시 2초뒤에 알람이 발생하게 하고싶다.
+            testBtn1.onclick=testBtn1Handler;
+
+                function testBtn1Handler(e){
+                    new Promise((resolve)=>{
+                       setTimeout(()=>{
+                           alert("2초뒤 알람");
+                           resolve();
+                       },2000);
+                    }).then((resM)=>{
+                            return new Promise((resolve)=>{
+                                setTimeout(()=>{
+                                    alert("2초뒤 알람!")
+                                    resolve();
+                                },2000);
+                            })
+                    }).then((resM)=>{
+                        return new Promise((resolve)=>{
+                            setTimeout(()=>{
+                                alert("2초뒤알람!!");
+                                resolve();
+                            },2000)
+                        })
+                    }).then((resM)=>{
+                        setTimeout(()=>{
+                            alert("마지막 알람!!!")
+                        },2000)
+                    });
+                }
+
+
+            // setTimeout(()=>{
+            //     alert("2초뒤")
+            //     setTimeout(()=>{
+            //         alert("2초뒤")
+            //         setTimeout(()=>{
+            //             alert("2초뒤")
+            //             setTimeout(()=>{
+            //                 alert("2초뒤")
+            //             },2000)
+            //         },2000);
+            //     },2000);
+            // },2000);
+
+        </script>
+    </fieldset>
+    <fieldset>
+        <legend><h2>프로미스 객체를 반환하는 프라미스화</h2></legend>
+        <h3>프라미스 체이닝을 위해서 then 함수에 프라미스 객체를 생성하는 것이 너무너무 복잡해서 프로미스화를 한다.</h3>
+        <button id="testBtn2">연속 알람!!</button>
+
+        <script>
+            //then 에서 반활할 Promise 객체를 함수에서 반환하도록 한다.
+            let i= 0;
+            function setTimeAlertPromise(sec=2){ //프라미스화
+              return new Promise((resolve)=>{
+                  setTimeout(()=>{
+                      alert(`${sec}초 뒤 알람!`);
+                      resolve();
+                  },1000*sec);
+              });
+            };
+
+            //fetch() ajax api 는 Promise 화가 되어 있어서 .then() 으로 동기화 할 수 있다.
+            testBtn2.onclick=function (e){
+                setTimeAlertPromise(0)
+                    .then((resM)=>{
+                    return setTimeAlertPromise(1);
+                }).then((resM)=>{
+                    return setTimeAlertPromise(2);
+                }).then((resM)=>{
+                    return setTimeAlertPromise(3);
+                }).then((resm)=>{
+                    setTimeout(()=>{
+                        alert("끝")
+                    },2000)
+                })
+            }
+        </script>
+    </fieldset>
+</body>
+</html>
