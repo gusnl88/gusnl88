@@ -1,0 +1,17 @@
+[{
+  "name": "봉현",
+  "birth": 1988,
+  "job": "학생",
+  "married": true
+ },{
+  "name": "신동일",
+  "birth": 1991,
+  "job": "학생",
+  "married": false
+ },{
+  "name": "재현",
+  "birth": 1995,
+  "job": "학생",
+  "married": false
+ }
+]
