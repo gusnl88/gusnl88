@@ -4,10 +4,38 @@
     <meta charset="UTF-8">
     <title>fetch API 와 AJAX</title>
 </head>
-<body>
+<style>
+    @import url("https://fonts.googleapis.com/css?family=Signika+Negative:300,400&display=swap");
+
+    body{
+
+        font-family: "Signika Negative", sans-serif;
+    }
+    h2{
+        text-shadow: 2px 2px 2px gray;
+        color: darkgreen;
+    }
+    b{
+        background-color: lightcoral;
+        color: white;
+    }
+    h3{text-shadow: 2px 2px 2px gray;
+        color: dodgerblue;
+
+    }
+    a{
+        text-decoration: none;
+    }
+    li{
+        list-style-type: square;
+
+    }
+
+</style>
+<body oncontextmenu="return false" onselectstart="return false">
 <fieldset>
     <legend><h2>Promise 화 된 비동기 통신 API fetch</h2></legend>
-    <h2>empListJson.do 와 비동기식 통신</h2>
+    <h3>empListJson.do 와 비동기식 통신(fetch)</h3>
     <button onclick="loadEmpListJson()">로드</button>
     <pre id="empListCont"></pre>
     <div id="div"></div>
@@ -16,7 +44,7 @@
 
 
     function loadEmpListJson() {
-        const a = fetch("empListJson.do?deptno=10", {method: "GET"})
+         fetch("empListJson.do?deptno=10", {method: "GET"})
             .then((resp) => {//응답한내역 전체( 응답한내역 어떤 형식으로 처리할건지 정의해야한다.)
                 //resp.text() //응답한 내역을 문자열로 처리하는 Promise 를 반환
                 return resp.json(); //응답한 내역을 문자열과 Object 로 파싱 처리하는 Promise 반환
@@ -26,6 +54,128 @@
     }
 
     </script>
+</fieldset>
+<fieldset>
+    <legend><h2>XMLHttpRequest 의 프라미스화</h2></legend>
+        <h3>
+            <a href="javascript:void(0)" id="loadImgListBtn">
+            프라미스화 한 함수로 ajax/imgList.html 불러오기
+            </a>
+        </h3>
+
+    <div id="imgCont"></div>
+    <script>
+        loadImgListBtn.onclick=function (e){
+            fetchApi("empListJson.do").then((responseText)=>{
+                imgCont.innerHTML=responseText;
+            }).catch((errorMsg)=>{
+                alert("호출 실패 "+errorMsg);
+            });
+            //fetch 함수에는 catch 가 없다 (reject 를 정의하지 않고 있다.)
+        }
+        function fetchApi(url,method="GET"){
+            return new Promise((resolve,reject)=>{
+                const req=new XMLHttpRequest(); //req.readyState==0
+                req.open(method,url);//req.readyState==1
+                req.onload=function (e){//통신완료 req.readyState==4 :응답 내역을 모두 처리 했을때.
+                    if(req.status==200) {
+                        let responseText = req.responseText;
+                        resolve(responseText);
+                    }else{
+                        reject(new Error(req.status+" 오류"));
+                    }
+                }
+                req.send();//통신시작 1.5~쯤
+                // req.readyState==2 : 서버에서 응답 해더(상태)를 받았을때.
+                //req.readyState==3 : 서버에서 모든 응답을 완료했을 때
+            })
+        }
+    </script>
+</fieldset>
+<fieldset>
+    <legend><h2>과제 ! dept 리스트를 json 로 반환하는 서블릿(l19EmpListJson.java)을 만들고 ajax 로 호출하세요~</h2></legend>
+    <p>
+        <button id="loadDeptBtn" >XTMLHttpRequest 로 호출</button>
+        <button id="promiseBtn">XTMLHttpRequest 의 프라미스화로 호출</button>
+        <button onclick="loadDeptListJson()">fetch 로 호출</button>
+        <a href="empListJson.do">ddddd</a>
+    </p>
+    <table>
+
+        <tbody id="List1">
+
+        </tbody>
+    </table>
+
+    <script>
+
+        //1번문제
+        const loadDeptBtn=document.getElementById("loadDeptBtn");
+
+        loadDeptBtn.onclick=loadDept;
+        function loadDept(){
+            let url="empListJson.do";
+            const req=new XMLHttpRequest();
+            req.open("GET",url);
+            req.onload=function (e){
+                let deptListJson=req.responseText;
+                let deptList=JSON.parse(deptListJson);
+
+                printDeptList(deptList,"1번문제");
+            }
+            req.send();
+        }
+        //2번문제
+        const list2=document.getElementById("promiseBtn");
+
+        list2.onclick=function (e){
+            promiseList("empListJson.do").then((responseText)=>{
+
+            }).catch((errorMsg)=>{
+                alert("호출 실패 "+errorMsg);
+            })
+        };
+        function promiseList(url,mathod="GET"){
+            return new Promise((resolve,reject)=>{
+                const req=new XMLHttpRequest();
+                req.open(mathod,url);
+                req.onload=function (e){
+                    if(req.status==200) {
+                        let responseText = req.responseText;
+                        let deptList=JSON.parse(responseText);
+                        printDeptList(deptList,"2번문제");
+                        resolve(responseText);
+                    }else{
+                        reject(new Error(req.status+" 오류"));
+                    }
+                }
+                req.send();
+            })
+        }
+        //fetch 3번문제
+        function loadDeptListJson() {
+            fetch("empListJson.do", {method: "GET"})
+                .then((resp) => {
+                    return resp.json();
+                }).then((deptList) => {
+                printDeptList(deptList,"3번문제");
+            })
+        }
+            /////공동사용
+        function  printDeptList(deptList,a){
+            let sum=a;
+            let html="";
+            deptList.forEach((dept)=>{
+                html+="<tr>"+"<td>"+sum+"</td>";
+                for(let key in dept){
+                    html+=`<td>${dept[key]}</td>`;
+                }
+                html+="</tr>";
+            });
+            List1.innerHTML=html;
+        }
+    </script>
+
 </fieldset>
 </body>
 </html>
