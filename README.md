@@ -1,4 +1,12 @@
+
+
 ![header](https://capsule-render.vercel.app/api?type=wave&color=auto&height=300&section=header&text=WellCome%20My_Git&fontSize=90)
+
+##  블로그(진행중..)
+
+
+[![Portfolio](https://img.shields.io/badge/Portfolio-https%3A%2F%2Fgusnl88.github.io%2Fgusnl88%2F-blue?style=flat-square&logo=google-chrome)](https://gusnl88.github.io/gusnl88/)
+
 ##  SKILLS
 
 #### 　⚜ DataBase
