@@ -14,7 +14,8 @@
 ![Thymeleaf](https://img.shields.io/badge/Thymeleaf-005F0F.svg?&style=for-the-badge&logo=Thymeleaf&logoColor=white)
 ### 　🔱 Tools
 　![IntelliJ IDEA](https://img.shields.io/badge/IntelliJ%20IDEA-000000.svg?&style=for-the-badge&logo=IntelliJ%20IDEA&logoColor=white)
- 
+ ![Eclipse](https://img.shields.io/badge/Eclipse-2C2255.svg?&style=for-the-badge&logo=Eclipse&logoColor=white)
+![Visual Studio](https://img.shields.io/badge/Visual%20Studio-5C2D91.svg?&style=for-the-badge&logo=Visual%20Studio&logoColor=white)
 ### 　💥 Languages
 　![JAVA](https://img.shields.io/badge/JAVA-007396.svg?&style=for-the-badge&logo=Buy%20Me%20A%20Coffee&logoColor=white)
 ![SPRING](https://img.shields.io/badge/Spring-6DB33F.svg?&style=for-the-badge&logo=Spring&logoColor=white)
