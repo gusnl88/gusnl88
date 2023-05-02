@@ -25,7 +25,6 @@
 ![Node.js](https://img.shields.io/badge/Node.js-339933.svg?&style=for-the-badge&logo=Node.js&logoColor=white)
 ![Express](https://img.shields.io/badge/Express-000000.svg?&style=for-the-badge&logo=Express&logoColor=white)
  
-![header](https://capsule-render.vercel.app/api?type=wave&color=auto&height=300&section=header&text=WellCome%20My_Git&fontSize=90)
 ## Email
 
 [![Email](https://img.shields.io/badge/email-gusnl88%40naver.com-red?style=for-the-badge&logo=gmail)](mailto:gusnl88@naver.com)
