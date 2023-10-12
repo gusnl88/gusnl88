@@ -5,7 +5,7 @@
 ##  블로그(진행중..)
 
 
-[![Portfolio](https://img.shields.io/badge/Portfolio-https%3A%2F%2Fgusnl88.github.io%2Fgusnl88%2F-blue?style=flat-square&logo=google-chrome)](https://develkbh.kro.kr)
+[![Portfolio](https://img.shields.io/badge/Portfolio-https%3A%2F%2Fdevelkbh.kro.kr-blue?style=flat-square&logo=google-chrome)](https://develkbh.kro.kr)
 
 ##  SKILLS
 
