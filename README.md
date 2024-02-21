@@ -37,4 +37,5 @@
 
 [![Email](https://img.shields.io/badge/email-gusnl88%40naver.com-red?style=for-the-badge&logo=gmail)](mailto:gusnl88@naver.com)
 \
-gusnl88@naver.com
+email-gusnl88@naver.com
+Tstory-develkbh.tistory.com/
