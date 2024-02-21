@@ -6,6 +6,8 @@
 
 
 [![Portfolio](https://img.shields.io/badge/Portfolio-https%3A%2F%2Fdevelkbh.kro.kr-blue?style=flat-square&logo=google-chrome)](https://develkbh.kro.kr)
+[![Tstory](https://img.shields.io/badge/Tstory-https%3A%2F%2Fdeveldevelkbh.tistory.com-blue?style=flat-square&logo=google-chrome)](https://develkbh.tistory.com/)
+
 
 ##  SKILLS
 
@@ -37,5 +39,4 @@
 
 [![Email](https://img.shields.io/badge/email-gusnl88%40naver.com-red?style=for-the-badge&logo=gmail)](mailto:gusnl88@naver.com)
 \
-[![Tstory](https://img.shields.io/badge/Tstory-https%3A%2F%2Fdeveldevelkbh.tistory.com-blue?style=flat-square&logo=google-chrome)](https://develkbh.tistory.com/)
 
