@@ -5,9 +5,9 @@
 ##  블로그(진행중..)
 
 
-[![Portfolio](https://img.shields.io/badge/블로그-https%3A%2F%2Fdevelkbh.kro.kr-blue?style=flat-square&logo=google-chrome)](https://)
+[![Portfolio](https://img.shields.io/badge/블로그-https%3A%2F%2F주소-blue?style=flat-square&logo=google-chrome)](https://)
 \
-[![Tstory](https://img.shields.io/badge/티스토리-https%3A%2F%2Fdeveldevelkbh.tistory.com-blue?style=flat-square&logo=google-chrome)](https:///)
+[![Tstory](https://img.shields.io/badge/티스토리-https%3A%2F%2F즈소-blue?style=flat-square&logo=google-chrome)](https:///)
 
 
 ##  SKILLS
